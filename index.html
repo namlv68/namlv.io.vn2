@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Safeguard for browser extensions attempting to reassign window.fetch on Window object
+      (function() {
+        try {
+          var originalFetch = window.fetch ? window.fetch.bind(window) : undefined;
+          var customFetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return customFetch;
+            },
+            set: function(val) {
+              customFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {}
+
+        // Intercept and prevent extension-origin fetch errors from breaking the page
+        window.addEventListener('error', function(event) {
+          if (
+            (event.filename && event.filename.indexOf('chrome-extension://') !== -1) ||
+            (event.message && event.message.indexOf('Cannot set property fetch') !== -1)
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (
+            event.reason &&
+            typeof event.reason.message === 'string' &&
+            event.reason.message.indexOf('Cannot set property fetch') !== -1
+          ) {
+            event.preventDefault();
+          }
+        });
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chia sẻ Làm Video AI Affiliate Bán Hàng Triệu View</title>
+    <meta name="description" content="Lộ trình tạo video AI bán hàng & Affiliate Marketing tự động từ con số 0 đến làm chủ các công cụ AI chuyển đổi đơn hàng hiệu quả." />
+    <meta property="og:title" content="Chia sẻ Làm Video AI Affiliate Bán Hàng Triệu View" />
+    <meta property="og:description" content="Lộ trình tạo video AI bán hàng & Affiliate Marketing tự động từ con số 0 đến làm chủ các công cụ AI chuyển đổi đơn hàng hiệu quả." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0a0814] text-[#f3f4f6] font-['Plus_Jakarta_Sans',sans-serif]">
+    <div id="fb-root"></div>
+    <div id="root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        if (window.FB) {
+          window.FB.init({
+            xfbml: true,
+            version: 'v18.0'
+          });
+          window.FB.Event.subscribe('xfbml.ready', function(msg) {
+            if (msg.type === 'video') {
+              msg.instance.subscribe('finishedPlaying', function() {
+                try {
+                  msg.instance.seek(0);
+                  msg.instance.pause();
+                } catch(e) {}
+              });
+            }
+          });
+        }
+      };
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

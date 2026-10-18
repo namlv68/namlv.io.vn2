@@ -1,0 +1,6 @@
+{
+  "name": "Chia Sẻ Làm Video AI Affiliate Bán Hàng",
+  "description": "Lộ trình tạo video AI bán hàng & Affiliate Marketing từ cơ bản đến chuyên sâu với các công cụ AI hiện đại",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
