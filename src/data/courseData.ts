@@ -156,24 +156,28 @@ export const PAIN_POINTS = [
 
 export const FAQS: FAQItem[] = [
   {
-    question: 'Tôi không có sản phẩm thật thì có làm Affiliate AI được không?',
-    answer: 'Hoàn toàn được! Bạn chỉ cần lấy hình ảnh/video sản phẩm có sẵn trên Shopee, TikTok Shop hoặc Taobao. Buổi chia sẻ sẽ hướng dẫn bạn dùng AI biến thành video của bạn gắn link ăn hoa hồng.'
+    question: 'Tôi là người mới bắt đầu, chưa từng biết gì về AI hay làm video thì có làm được không?',
+    answer: 'Hoàn toàn được! Buổi Zoom chia sẻ này được thiết kế cầm tay chỉ việc dành riêng cho người mới từ con số 0. Bạn sẽ được hướng dẫn từng bước: từ cách sử dụng công cụ, tạo hình ảnh chuẩn theo khuôn mặt của mình cho tới khi hoàn thiện video đầu tiên bằng AI ngay trong buổi chia sẻ.'
   },
   {
-    question: 'Tôi chưa từng làm video & chưa biết về AI thì có tham gia buổi chia sẻ được không?',
-    answer: 'Buổi chia sẻ được thiết kế cầm tay chỉ việc từ con số 0. Hướng dẫn từng cú click chuột trên các công cụ AI phổ biến nhất cực kỳ đơn giản.'
+    question: 'Buổi Zoom chia sẻ này có hướng dẫn tôi tự làm hình ảnh theo khuôn mặt của chính mình không?',
+    answer: 'Có 100%! Trong buổi Zoom, bạn sẽ được tặng và hướng dẫn chi tiết SKILL tạo ảnh theo khuôn mặt của mình: giữ trọn vẹn 100% đường nét gương mặt thật nhưng đặt vào mọi bối cảnh chuyên nghiệp (doanh nhân, studio sang trọng, phong cách thời thượng...) để xây dựng thương hiệu cá nhân hoặc làm video bán hàng đỉnh cao.'
   },
   {
-    question: 'Làm video AI có cần máy tính cấu hình khủng không?',
-    answer: 'Không cần! Tất cả các công cụ AI đều xử lý trên đám mây (Cloud AI), bạn có thể làm việc dễ dàng trên điện thoại hoặc máy tính văn phòng thông thường.'
+    question: 'Sau buổi Zoom, tôi có thể tự làm được video đầu tiên bằng AI không?',
+    answer: 'Chắc chắn có! Bạn sẽ nắm trọn công thức viết Prompt, tạo video AI đầu tiên và áp dụng kỹ thuật Hook 3s đầu giữ chân người xem. Bạn sẽ tự tay sản xuất được video AI hoàn chỉnh đầu tiên theo đúng chủ đề bạn mong muốn.'
   },
   {
-    question: 'Làm video AI bán hàng có sợ bị TikTok / Shopee dính gậy không?',
-    answer: 'Chia sẻ Prompt & Hậu kỳ CapCut giúp video hạn chế bị thuật toán quét lỗi "AI rác" hay nội dung lặp lại.'
+    question: 'Tôi chỉ có điện thoại, không có máy tính cấu hình mạnh thì có làm được không?',
+    answer: 'Hoàn toàn làm tốt! Tất cả công cụ AI hiện nay đều xử lý trên đám mây (Cloud AI). Bạn chỉ cần một chiếc điện thoại smartphone hoặc laptop văn phòng cơ bản có kết nối Internet là đã có thể tạo ảnh khuôn mặt và xuất video AI mượt mà.'
   },
   {
-    question: 'Sau khi đăng ký gói Chuyên Sâu, tôi được hỗ trợ như thế nào?',
-    answer: 'Bạn sẽ được tham gia Nhóm Zalo riêng tư. Có người hỗ trợ 24/7 từ khâu tư vấn chọn ngách sản phẩm hot, kiểm tra kịch bản đến sửa lỗi video giúp bạn nhanh ra đơn hàng.'
+    question: 'Tôi không có sẵn sản phẩm thì có thể ứng dụng làm video AI để kiếm tiền được không?',
+    answer: 'Rất dễ dàng! Buổi chia sẻ sẽ hướng dẫn bạn cách lấy hình ảnh/video sản phẩm có sẵn trên Shopee, TikTok Shop để làm Affiliate (tiếp thị liên kết), dùng nhân vật AI và hình ảnh khuôn mặt của bạn để quảng bá mà không cần bỏ vốn nhập hàng hay thuê mẫu.'
+  },
+  {
+    question: 'Tham gia buổi Zoom chia sẻ này có mất phí không và tôi cần chuẩn bị những gì?',
+    answer: 'Buổi chia sẻ là MIỄN PHÍ 100%. Bạn chỉ cần chuẩn bị sẵn 1-2 bức ảnh chân dung rõ mặt của mình, cài sẵn ứng dụng Zoom và tham gia nhóm Zalo sau khi đăng ký để nhận link phòng Zoom cùng bộ tài liệu quà tặng trước giờ bắt đầu.'
   }
 ];
 
