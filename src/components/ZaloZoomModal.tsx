@@ -16,7 +16,7 @@ export const ZaloZoomModal: React.FC<Props> = ({ isOpen, onClose, userData }) =>
 
   // Official Zalo Group link and Admin contact
   // Zalo Group link: opens directly in Zalo
-  const ZALO_GROUP_URL = 'https://zalo.me/g/vjfxup037';
+  const ZALO_GROUP_URL = 'https://zalo.me/g/bkpvvufx233ybrqgph3p';
   const ADMIN_ZALO_URL = 'https://zalo.me/0981028794';
   const ADMIN_PHONE = '0981028794';
 
