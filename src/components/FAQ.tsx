@@ -16,8 +16,8 @@ export const FAQ: React.FC = () => {
           <HelpCircle className="w-7 h-7 text-purple-400" />
           Câu Hỏi Thường Gặp (FAQ)
         </h2>
-        <p className="text-gray-300 text-sm mt-1">
-          Mọi thắc mắc phổ biến trước khi đăng ký chia sẻ cách làm video AI Affiliate & Thương hiệu
+        <p className="text-gray-300 text-sm mt-1 max-w-xl mx-auto">
+          Giải đáp thắc mắc cho người mới bắt đầu: Cách tạo ảnh chuẩn theo khuôn mặt của mình &amp; hoàn thiện video đầu tiên bằng AI trong buổi Zoom chia sẻ
         </p>
       </div>
 
