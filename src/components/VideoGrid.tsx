@@ -68,9 +68,9 @@ const DEFAULT_VIDEOS: VideoItem[] = [
   },
   {
     id: '10',
-    title: 'Video Dạng Chia Sẻ Kiến Thức',
-    badge: 'Affilate Đồ Chơi',
-    videoUrl: 'https://www.facebook.com/reel/1115675330783820'
+    title: 'Video Dạn Hài Hước Gia Đình',
+    badge: 'Affilate Thời Trang',
+    videoUrl: 'https://www.facebook.com/reel/2782271052168418'
   },
   {
     id: '11',
