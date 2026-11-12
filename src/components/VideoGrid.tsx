@@ -134,10 +134,10 @@ export const VideoGrid: React.FC = () => {
   }, []);
 
   return (
-    <section className="mt-20">
+    <section>
       <SectionHeading
-        eyebrow="Video demo trên Facebook"
-        title="Những video AI đang ra đơn tốt"
+        as="h3"
+        title="Video demo đang ra đơn trên Facebook"
         description="Bấm vào video để xem trực tiếp. Nếu video dừng ở màn hình “Xem thêm”, bấm “Xem lại”."
       />
 
@@ -155,7 +155,9 @@ export const VideoGrid: React.FC = () => {
                     {video.title}
                   </h4>
                   {video.badge && (
-                    <span className="text-[11px] font-semibold text-violet-600">{video.badge}</span>
+                    <span className="inline-block mt-1 text-[11px] sm:text-xs font-bold text-white bg-violet-600 px-2 py-0.5 rounded-md">
+                      {video.badge}
+                    </span>
                   )}
                 </div>
                 <button
@@ -170,7 +172,7 @@ export const VideoGrid: React.FC = () => {
               </div>
 
               {/* Facebook iFrame 9:16 – cắt phần header của FB */}
-              <div className="relative aspect-[9/16] bg-slate-100 w-full overflow-hidden">
+              <div className="relative aspect-[9/16] bg-slate-900 w-full overflow-hidden">
                 <iframe
                   key={`${video.id}-${reloadKeys[video.id] || 0}`}
                   src={embedUrl}

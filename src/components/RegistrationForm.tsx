@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User, Phone, Briefcase, Gift, Video, ShieldCheck, ArrowRight, MessageSquare, Camera } from 'lucide-react';
 import { RegistrationData } from '../types';
+import { SectionHeading, Mark } from './SectionHeading';
 
 interface Props {
   onSuccess: (data: RegistrationData) => void;
@@ -170,46 +171,44 @@ export const RegistrationForm: React.FC<Props> = ({ onSuccess }) => {
   ];
 
   return (
-    <section id="registration-section" className="mt-24 scroll-mt-6">
+    <section id="registration-section" className="mt-24 md:mt-32 scroll-mt-6">
       {/* Giữ anchor cũ để link cũ không bị hỏng */}
       <div id="pricing-section" />
 
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <div className="text-xs font-semibold uppercase tracking-wider text-violet-600 mb-2">
-          3 · Đăng ký · Miễn phí 100%
-        </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-          Đăng ký Zoom chia sẻ AI &amp; nhận tài liệu
-        </h2>
-        <p className="mt-3 text-sm md:text-base text-slate-500">
-          Dành riêng cho <strong className="font-semibold text-slate-700">người mới bắt đầu</strong>: học cách tạo video bán
-          hàng triệu view, xây kênh Affiliate ra đơn bằng AI, giữ nguyên gương mặt &amp; giọng nói của bạn.
-        </p>
-      </div>
+      <SectionHeading
+        step="4"
+        eyebrow="Đăng ký · Miễn phí 100%"
+        title={
+          <>
+            Đăng ký <Mark>Zoom chia sẻ AI</Mark> &amp; nhận quà
+          </>
+        }
+        description={
+          <>
+            Dành cho <strong className="font-semibold text-slate-700">người mới bắt đầu</strong>: tạo video bán hàng triệu
+            view, giữ nguyên gương mặt &amp; giọng nói của bạn.
+          </>
+        }
+      />
 
       <div className="bg-white border border-violet-100 rounded-3xl p-5 sm:p-8 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 shadow-[0_1px_2px_rgba(76,29,149,0.04),0_8px_32px_-12px_rgba(76,29,149,0.12)]">
         {/* Cột trái: quyền lợi */}
         <div className="lg:col-span-5">
-          <h3 className="text-lg font-semibold text-slate-900 mb-4">Bạn nhận được miễn phí</h3>
+          <h3 className="text-xl font-bold text-slate-900 mb-4">Bạn nhận được miễn phí</h3>
 
           {/* Quà nổi bật */}
-          <div className="bg-violet-50 border border-violet-200 rounded-2xl p-4 mb-3">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-violet-600 text-white flex items-center justify-center shrink-0">
-                <Camera className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-violet-600">Quà tặng đặc biệt</div>
-                <h4 className="text-sm sm:text-base font-semibold text-slate-900 leading-snug mt-0.5">
-                  SKILL tạo ảnh theo khuôn mặt của bạn
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
-                  Quy trình &amp; câu lệnh giúp bạn tạo ảnh AI chuyên nghiệp giữ trọn{' '}
-                  <strong className="font-semibold text-slate-800">100% gương mặt thật</strong> để làm video, xây thương hiệu cá
-                  nhân và làm Affiliate mà không cần quay phim.
-                </p>
-              </div>
+          <div className="relative bg-violet-600 text-white rounded-2xl p-5 mb-4 overflow-hidden">
+            <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-amber-300 text-amber-950 px-2 py-0.5 rounded-full">
+              Quà tặng
+            </span>
+            <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center mb-3">
+              <Camera className="w-6 h-6" />
             </div>
+            <h4 className="text-lg font-extrabold leading-snug pr-16">SKILL tạo ảnh theo khuôn mặt của bạn</h4>
+            <p className="text-sm text-violet-100 mt-1.5 leading-relaxed">
+              Tạo ảnh AI chuyên nghiệp giữ <strong className="text-white">100% gương mặt thật</strong> để làm video, xây
+              thương hiệu cá nhân và Affiliate mà không cần quay phim.
+            </p>
           </div>
 
           <ul className="space-y-1">
@@ -229,7 +228,7 @@ export const RegistrationForm: React.FC<Props> = ({ onSuccess }) => {
 
         {/* Cột phải: form */}
         <div className="lg:col-span-7 lg:border-l lg:border-violet-50 lg:pl-10">
-          <h3 className="text-lg font-semibold text-slate-900">Thông tin nhận vé &amp; tài liệu</h3>
+          <h3 className="text-xl font-bold text-slate-900">Điền thông tin để nhận vé</h3>
           <p className="text-sm text-slate-500 mt-1 mb-6">
             Điền chính xác để nhận link phòng Zoom và tài liệu qua Zalo của bạn.
           </p>
@@ -350,7 +349,7 @@ export const RegistrationForm: React.FC<Props> = ({ onSuccess }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3.5 px-6 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-300 disabled:cursor-not-allowed text-white font-semibold text-base rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-4 px-6 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-300 disabled:cursor-not-allowed text-white font-bold text-lg rounded-2xl shadow-lg shadow-violet-600/25 transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>

@@ -25,9 +25,9 @@ export const ShopeeAffiliateResults: React.FC = () => {
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
 
   return (
-    <section className="mt-20">
+    <section className="mt-14">
       <SectionHeading
-        eyebrow="Kết quả thực chiến"
+        as="h3"
         title="Ra đơn Affiliate Shopee từ video AI"
         description="Đơn hàng và hoa hồng thực tế từ các video AI gắn link tiếp thị liên kết Shopee."
       />
