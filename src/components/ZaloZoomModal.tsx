@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Sparkles, MessageSquare, Video, Gift, Check, Copy, ArrowRight, ShieldCheck, Users, ExternalLink, QrCode } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, MessageSquare, Video, Gift, Check, Copy, ExternalLink } from 'lucide-react';
 import { RegistrationData } from '../types';
 
 interface Props {
@@ -8,17 +8,26 @@ interface Props {
   userData: RegistrationData | null;
 }
 
+// Link nhóm Zalo chính thức & liên hệ Admin
+const ZALO_GROUP_URL = 'https://zalo.me/g/bkpvvufx233ybrqgph3p';
+const ADMIN_ZALO_URL = 'https://zalo.me/0981028794';
+const ADMIN_PHONE = '0981028794';
+
 export const ZaloZoomModal: React.FC<Props> = ({ isOpen, onClose, userData }) => {
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
-  if (!isOpen) return null;
+  // Đóng bằng phím Esc
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
 
-  // Official Zalo Group link and Admin contact
-  // Zalo Group link: opens directly in Zalo
-  const ZALO_GROUP_URL = 'https://zalo.me/g/bkpvvufx233ybrqgph3p';
-  const ADMIN_ZALO_URL = 'https://zalo.me/0981028794';
-  const ADMIN_PHONE = '0981028794';
+  if (!isOpen) return null;
 
   const handleCopyPhone = () => {
     navigator.clipboard.writeText(ADMIN_PHONE);
@@ -33,202 +42,129 @@ export const ZaloZoomModal: React.FC<Props> = ({ isOpen, onClose, userData }) =>
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      {/* Backdrop overlay */}
-      <div 
-        className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity duration-300"
-        onClick={onClose}
-      />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true">
+      <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={onClose} />
 
-      {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#160f33] via-[#100a26] to-[#0a0718] border-2 border-purple-500/50 rounded-3xl shadow-[0_0_60px_rgba(139,92,246,0.3)] overflow-hidden z-10 my-6 animate-scaleUp text-left max-h-[92vh] flex flex-col">
-        
-        {/* Top Glow bar */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 shrink-0" />
-
-        {/* Modal Header */}
-        <div className="relative p-5 sm:p-6 pb-3 flex items-start justify-between border-b border-[#2e2349] shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30 shrink-0">
-              <Sparkles className="w-6 h-6 text-yellow-300 animate-spin-slow" />
+      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl z-10 animate-scale-up text-left max-h-[92vh] flex flex-col overflow-hidden">
+        {/* Header */}
+        <div className="px-5 sm:px-7 pt-6 pb-4 flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <Check className="w-5 h-5" strokeWidth={3} />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">
-                <Check className="w-3 h-3 text-emerald-400" />
-                <span>ĐĂNG KÝ THÀNH CÔNG!</span>
-              </div>
-              <h3 className="text-lg sm:text-2xl font-black text-white tracking-tight">
-                Mời Bạn Tham Gia Nhóm Zalo
-              </h3>
+              <div className="text-xs font-semibold text-emerald-600">Đăng ký thành công</div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Mời bạn vào nhóm Zalo</h3>
             </div>
           </div>
-
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white p-2 rounded-xl hover:bg-white/10 transition-colors cursor-pointer"
-            title="Đóng popup"
+            className="text-slate-400 hover:text-slate-700 p-2 -m-1 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer"
+            aria-label="Đóng"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Modal Scrollable Body */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-5 flex-1 custom-scrollbar">
-          
-          {/* Welcome User Banner with Exact Required Success Message */}
-          <div className="bg-gradient-to-r from-emerald-950/60 via-purple-900/40 to-indigo-900/40 border-2 border-emerald-500/40 rounded-2xl p-4 text-xs sm:text-sm text-gray-200 shadow-lg">
-            <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-                <Check className="w-5 h-5 text-emerald-300" />
-              </div>
-              <div>
-                <p className="font-extrabold text-sm sm:text-base text-emerald-300 leading-snug">
-                  Đăng ký thành công! Link Zoom và tài liệu sẽ được gửi qua Zalo số <span className="text-yellow-300 font-black underline underline-offset-4 decoration-yellow-400">{userData?.phone || ''}</span> của bạn.
-                </p>
-                <p className="mt-1.5 text-gray-300 leading-relaxed text-xs sm:text-sm">
-                  🎉 Xin chào <strong className="text-white">{userData?.fullName || 'bạn'}</strong> — Ngành: <strong className="text-pink-300">{userData?.industry || userData?.businessField || 'Kinh doanh & Affiliate'}</strong>. Hãy bấm tham gia ngay Nhóm Zalo bên dưới để nhận trọn bộ tài liệu AI &amp; cập nhật lịch phòng Zoom miễn phí:
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* Body */}
+        <div className="px-5 sm:px-7 pb-6 overflow-y-auto space-y-5 flex-1 custom-scrollbar">
+          <p className="text-sm text-slate-600 leading-relaxed">
+            Xin chào <strong className="font-semibold text-slate-900">{userData?.fullName || 'bạn'}</strong>
+            {(userData?.industry || userData?.businessField) && (
+              <> — ngành <strong className="font-semibold text-slate-900">{userData?.industry || userData?.businessField}</strong></>
+            )}
+            . Link Zoom và tài liệu sẽ được gửi qua Zalo số{' '}
+            <strong className="font-semibold text-violet-700">{userData?.phone || ''}</strong>. Hãy vào nhóm Zalo bên dưới để
+            nhận tài liệu AI &amp; lịch phòng Zoom miễn phí.
+          </p>
 
-          {/* 2 Key Deliverables in Zalo Group */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            
-            {/* Box 1: Free Documents & Gifts */}
-            <div className="bg-[#140e2b] border border-pink-500/30 rounded-2xl p-4 space-y-2">
-              <div className="flex items-center gap-2 text-pink-400 font-bold text-xs sm:text-sm">
-                <Gift className="w-4 h-4 shrink-0" />
-                <span>Bộ Quà Tặng &amp; Tài Liệu AI Miễn Phí</span>
-              </div>
-              <ul className="text-xs text-gray-300 space-y-1.5 leading-snug">
-                <li className="flex items-start gap-1.5 text-amber-300 font-bold bg-amber-500/10 p-1.5 rounded-lg border border-amber-500/30">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                  <span>Tặng SKILL tạo ảnh theo khuôn mặt của mình (chuẩn nét 100% gương mặt thật)</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-pink-400 font-bold">•</span>
-                  <span>Trọn bộ Prompt viết kịch bản video triệu view các ngành</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-pink-400 font-bold">•</span>
-                  <span>Ebook quy trình làm video AI từ con số 0</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-pink-400 font-bold">•</span>
-                  <span>Danh sách Tool AI giữ giọng &amp; mặt thật miễn phí</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Box 2: Zoom Sharing */}
-            <div className="bg-[#140e2b] border border-purple-500/30 rounded-2xl p-4 space-y-2">
-              <div className="flex items-center gap-2 text-purple-300 font-bold text-xs sm:text-sm">
-                <Video className="w-4 h-4 shrink-0" />
-                <span>Buổi Zoom Chia Sẻ AI Cho Người Mới</span>
-              </div>
-              <ul className="text-xs text-gray-300 space-y-1.5 leading-snug">
-                <li className="flex items-start gap-1.5">
-                  <span className="text-purple-400 font-bold">•</span>
-                  <span>Hình thức: Trực tiếp qua Zoom Meetings</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-purple-400 font-bold">•</span>
-                  <span>Cầm tay chỉ việc tạo video AI đầu tiên</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-purple-400 font-bold">•</span>
-                  <span>Link &amp; Mật khẩu phòng Zoom gửi trong Nhóm Zalo</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* MAIN ACTION: Big Zalo Group Join Button */}
-          <div className="bg-[#130d28] border-2 border-blue-500/50 rounded-2xl p-5 text-center space-y-3.5 shadow-xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-300 bg-blue-950/60 border border-blue-500/30 px-3 py-1 rounded-full">
-              <Users className="w-3.5 h-3.5 text-blue-400" />
-              <span>Cộng Đồng Chia Sẻ AI Affiliate 2026</span>
-            </div>
-
-            <div>
-              <h4 className="text-base sm:text-lg font-black text-white">
-                Bấm nút bên dưới để vào Nhóm Zalo ngay
-              </h4>
-              <p className="text-xs text-gray-300 mt-0.5">
-                Admin đã ghim sẵn tài liệu và thông báo lịch Zoom trong nhóm.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-1">
+          {/* Nhóm Zalo – hành động chính */}
+          <div className="bg-violet-50 border border-violet-100 rounded-2xl p-5 text-center">
+            <h4 className="text-base font-semibold text-slate-900">Bấm để vào nhóm Zalo ngay</h4>
+            <p className="text-xs text-slate-500 mt-1">Admin đã ghim sẵn tài liệu và lịch Zoom trong nhóm.</p>
+            <div className="mt-4 flex flex-col sm:flex-row gap-2.5">
               <a
                 href={ZALO_GROUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto flex-1 py-3.5 px-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-black text-sm sm:text-base rounded-xl shadow-[0_0_25px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
+                className="flex-1 py-3 px-5 bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2"
               >
-                <MessageSquare className="w-5 h-5 text-yellow-300" />
-                <span>THAM GIA NHÓM ZALO NGAY</span>
-                <ExternalLink className="w-4 h-4 text-blue-200 group-hover:translate-x-0.5 transition-transform" />
+                <MessageSquare className="w-4 h-4" />
+                Tham gia nhóm Zalo
+                <ExternalLink className="w-3.5 h-3.5 opacity-80" />
               </a>
-
               <button
                 onClick={handleCopyLink}
-                className="w-full sm:w-auto py-3 px-4 bg-[#1e153d] hover:bg-[#281c52] border border-purple-500/40 text-purple-200 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
-                title="Sao chép link nhóm"
+                className="py-3 px-4 bg-white border border-violet-200 hover:border-violet-300 text-violet-700 text-sm font-medium rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
-                {copiedLink ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
-                <span>{copiedLink ? 'Đã sao chép link' : 'Copy Link Nhóm'}</span>
+                {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                {copiedLink ? 'Đã sao chép' : 'Copy link nhóm'}
               </button>
             </div>
           </div>
 
-          {/* Backup Contact / Zalo Admin direct chat */}
-          <div className="bg-[#100b22] border border-[#2d2244] rounded-xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-            <div className="text-center sm:text-left">
-              <span className="text-gray-400 block sm:inline">Chưa vào được nhóm hoặc cần hỗ trợ riêng?</span>{' '}
-              <span className="text-gray-200">Liên hệ Zalo Admin: </span>
-              <strong className="text-pink-400 font-bold">{ADMIN_PHONE} (Lê Văn Nam)</strong>
+          {/* Bạn sẽ nhận được */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="border border-slate-100 rounded-2xl p-4">
+              <div className="flex items-center gap-2 text-sm font-semibold text-slate-900 mb-2">
+                <Gift className="w-4 h-4 text-violet-600" />
+                Quà tặng &amp; tài liệu
+              </div>
+              <ul className="text-xs text-slate-600 space-y-1.5 leading-relaxed list-disc pl-4 marker:text-violet-300">
+                <li><strong className="font-semibold text-slate-800">SKILL tạo ảnh theo khuôn mặt</strong> (giữ 100% gương mặt thật)</li>
+                <li>Bộ Prompt viết kịch bản video triệu view các ngành</li>
+                <li>Ebook quy trình làm video AI từ con số 0</li>
+                <li>Danh sách tool AI giữ giọng &amp; mặt thật miễn phí</li>
+              </ul>
             </div>
+            <div className="border border-slate-100 rounded-2xl p-4">
+              <div className="flex items-center gap-2 text-sm font-semibold text-slate-900 mb-2">
+                <Video className="w-4 h-4 text-violet-600" />
+                Buổi Zoom cho người mới
+              </div>
+              <ul className="text-xs text-slate-600 space-y-1.5 leading-relaxed list-disc pl-4 marker:text-violet-300">
+                <li>Trực tiếp qua Zoom Meetings</li>
+                <li>Cầm tay chỉ việc tạo video AI đầu tiên</li>
+                <li>Link &amp; mật khẩu phòng Zoom gửi trong nhóm Zalo</li>
+              </ul>
+            </div>
+          </div>
 
-            <div className="flex items-center gap-2">
+          {/* Liên hệ Admin */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 pt-1">
+            <span className="text-center sm:text-left">
+              Chưa vào được nhóm? Zalo Admin:{' '}
+              <strong className="font-semibold text-slate-800">{ADMIN_PHONE} (Lê Văn Nam)</strong>
+            </span>
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={handleCopyPhone}
-                className="px-2.5 py-1.5 bg-purple-900/40 hover:bg-purple-900/60 border border-purple-500/30 text-purple-300 rounded-lg font-semibold flex items-center gap-1 transition-all cursor-pointer"
+                className="px-3 py-1.5 border border-slate-200 hover:border-violet-300 text-slate-600 rounded-lg font-medium flex items-center gap-1 transition-colors cursor-pointer"
               >
-                {copiedPhone ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
-                <span>{copiedPhone ? 'Đã chép SĐT' : 'Copy SĐT'}</span>
+                {copiedPhone ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                {copiedPhone ? 'Đã chép' : 'Copy SĐT'}
               </button>
-
               <a
                 href={ADMIN_ZALO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold flex items-center gap-1 transition-all"
+                className="px-3 py-1.5 bg-violet-50 hover:bg-violet-100 text-violet-700 rounded-lg font-semibold flex items-center gap-1 transition-colors"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>Nhắn Admin</span>
+                Nhắn Admin
               </a>
             </div>
           </div>
-
         </div>
 
-        {/* Modal Footer */}
-        <div className="p-4 bg-[#0a0718] border-t border-[#2e2349] flex items-center justify-between text-xs text-gray-400 shrink-0">
-          <div className="flex items-center gap-1.5 text-emerald-400">
-            <ShieldCheck className="w-4 h-4" />
-            <span>Thông tin được bảo mật an toàn</span>
-          </div>
-
+        <div className="px-5 sm:px-7 py-4 border-t border-slate-100 flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-white/10 hover:bg-white/15 text-gray-300 hover:text-white rounded-xl font-bold transition-all cursor-pointer"
+            className="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl font-medium transition-colors cursor-pointer"
           >
             Đóng
           </button>
         </div>
-
       </div>
     </div>
   );

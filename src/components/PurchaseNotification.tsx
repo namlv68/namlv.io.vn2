@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Video, CheckCircle, Sparkles, X, Gift } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 interface PurchaseItem {
   name: string;
@@ -103,57 +103,37 @@ export const PurchaseNotification: React.FC = () => {
   if (isDismissed) return null;
 
   const current = PURCHASES[currentIndex];
+  const initial = current.name.trim().charAt(0);
 
   return (
     <div
-      className={`fixed bottom-20 md:bottom-6 left-4 z-40 max-w-[320px] sm:max-w-sm transition-all duration-500 ease-out transform ${
-        isVisible
-          ? 'translate-y-0 opacity-100 scale-100 pointer-events-auto'
-          : 'translate-y-6 opacity-0 scale-95 pointer-events-none'
+      className={`hidden md:block fixed bottom-6 left-4 z-40 max-w-sm transition-all duration-500 ease-out ${
+        isVisible ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-3 opacity-0 pointer-events-none'
       }`}
+      aria-live="polite"
     >
-      <div className="relative bg-[#15102a]/95 backdrop-blur-md border border-purple-500/40 hover:border-pink-500/60 rounded-2xl p-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.5),0_0_20px_rgba(139,92,246,0.25)] flex items-start gap-3">
-        {/* Dismiss Button */}
+      <div className="relative bg-white border border-violet-100 rounded-2xl py-3 pl-3 pr-9 shadow-lg shadow-violet-900/5 flex items-center gap-3">
         <button
           onClick={() => setIsDismissed(true)}
-          className="absolute top-2 right-2 text-gray-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
-          title="Đóng thông báo"
+          className="absolute top-2 right-2 text-slate-300 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+          aria-label="Đóng thông báo"
         >
           <X className="w-3.5 h-3.5" />
         </button>
 
-        {/* Animated Avatar Icon */}
-        <div
-          className={`w-10 h-10 rounded-xl bg-gradient-to-br ${current.avatarBg} text-white flex items-center justify-center shrink-0 shadow-md shadow-purple-900/40 relative mt-0.5`}
-        >
-          <Video className="w-5 h-5" />
-          <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#15102a] flex items-center justify-center">
-            <CheckCircle className="w-2.5 h-2.5 text-white" />
+        <div className="relative w-9 h-9 rounded-full bg-violet-100 text-violet-700 font-semibold text-sm flex items-center justify-center shrink-0">
+          {initial}
+          <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">
+            <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
           </span>
         </div>
 
-        {/* Content */}
-        <div className="pr-4 text-left">
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs font-bold text-white leading-tight">
-              {current.name}
-            </span>
-            <span className="text-[10px] text-gray-400 font-medium">
-              ({current.location})
-            </span>
+        <div className="text-left min-w-0">
+          <div className="text-xs text-slate-500">
+            <span className="font-semibold text-slate-800">{current.name}</span> · {current.location} · {current.time}
           </div>
-
-          <div className="text-[11px] text-purple-300 font-medium mt-0.5 flex items-center gap-1">
-            <span>Đã đăng ký</span>
-            <strong className="text-pink-300 font-bold">{current.package}</strong>
-          </div>
-
-          <div className="flex items-center gap-2 mt-1">
-            <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-semibold bg-emerald-950/60 border border-emerald-800/50 px-1.5 py-0.2 rounded">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping inline-block" />
-              {current.time}
-            </span>
-            <span className="text-[10px] text-gray-400">Đã kích hoạt thành công</span>
+          <div className="text-xs text-slate-600 mt-0.5 truncate">
+            Đã đăng ký <span className="font-medium text-violet-700">{current.package}</span>
           </div>
         </div>
       </div>

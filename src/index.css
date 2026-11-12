@@ -1,1 +1,52 @@
 @import "tailwindcss";
+
+/*
+ * Giao diện sáng – tông tím dịu
+ * Nền trắng ánh tím, chữ xám đậm, một màu nhấn tím (violet-600).
+ */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-slide-up: slide-up 0.25s ease-out both;
+  --animate-scale-up: scale-up 0.2s ease-out both;
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-up {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf8ff;
+  color: #475569; /* slate-600 */
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+::selection {
+  background: #ddd6fe; /* violet-200 */
+  color: #2e1065;
+}
+
+/* Thanh cuộn nhẹ cho popup */
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #ddd6fe; border-radius: 999px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
