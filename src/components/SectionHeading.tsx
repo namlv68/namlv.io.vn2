@@ -49,5 +49,5 @@ export const SectionHeading: React.FC<Props> = ({
 
 /** Từ khóa được tô nổi bật kiểu bút dạ quang tím */
 export const Mark: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="text-violet-700 bg-[linear-gradient(transparent_60%,#ede9fe_60%)] px-0.5">{children}</span>
+  <span className="text-violet-700 bg-[linear-gradient(transparent_60%,#ede9fe_60%)]">{children}</span>
 );
