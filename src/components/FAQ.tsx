@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FAQS } from '../data/courseData';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { SectionHeading } from './SectionHeading';
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -10,42 +11,35 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="my-12 max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-[#c084fc] flex items-center justify-center gap-2">
-          <HelpCircle className="w-7 h-7 text-purple-400" />
-          Câu Hỏi Thường Gặp (FAQ)
-        </h2>
-        <p className="text-gray-300 text-sm mt-1 max-w-xl mx-auto">
-          Giải đáp thắc mắc cho người mới bắt đầu: Cách tạo ảnh chuẩn theo khuôn mặt của mình &amp; hoàn thiện video đầu tiên bằng AI trong buổi Zoom chia sẻ
-        </p>
-      </div>
+    <section className="mt-24 max-w-3xl mx-auto">
+      <SectionHeading
+        eyebrow="Hỏi đáp"
+        title="Câu hỏi thường gặp"
+        description="Dành cho người mới: cách tạo ảnh chuẩn theo khuôn mặt của mình và hoàn thiện video AI đầu tiên trong buổi Zoom."
+      />
 
-      <div className="space-y-3">
+      <div className="bg-white border border-violet-100 rounded-2xl divide-y divide-violet-50">
         {FAQS.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
-            <div
-              key={idx}
-              className="bg-[#15102a] border border-[#3b2d54] rounded-2xl overflow-hidden transition-all duration-200"
-            >
+            <div key={idx}>
               <button
                 onClick={() => toggle(idx)}
-                className="w-full text-left p-4 md:p-5 font-bold text-white text-sm md:text-base flex items-center justify-between gap-4 cursor-pointer hover:text-purple-300 transition-colors"
+                aria-expanded={isOpen}
+                className="w-full text-left px-5 py-4 md:px-6 md:py-5 flex items-center justify-between gap-4 cursor-pointer group"
               >
-                <span className="flex items-center gap-2">
-                  <span className="text-purple-400 font-mono">Q{idx + 1}.</span>
+                <span className="text-sm md:text-base font-semibold text-slate-800 group-hover:text-violet-700 transition-colors">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-5 h-5 text-purple-400 shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180' : ''
+                  className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
+                    isOpen ? 'rotate-180 text-violet-600' : ''
                   }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-5 pt-1 md:px-5 border-t border-[#3b2d54]/60 text-sm text-gray-300 leading-relaxed bg-[#0a0814]/50">
+                <div className="px-5 pb-5 md:px-6 -mt-1 text-sm text-slate-600 leading-relaxed">
                   {faq.answer}
                 </div>
               )}
