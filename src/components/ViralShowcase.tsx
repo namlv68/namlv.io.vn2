@@ -37,9 +37,9 @@ export const ViralShowcase: React.FC = () => {
   const [imgErrors, setImgErrors] = useState<Record<number, boolean>>({});
 
   return (
-    <section className="mt-20">
+    <section className="mt-14">
       <SectionHeading
-        eyebrow="Kết quả viral thực tế"
+        as="h3"
         title="Minh chứng triệu view từ hệ thống"
         description="Video kịch bản, đồ ăn và sản phẩm bán hàng đạt từ hàng triệu đến hàng chục triệu lượt xem."
       />
@@ -73,7 +73,7 @@ export const ViralShowcase: React.FC = () => {
                   {card.stats.map((stat, idx) => (
                     <span
                       key={idx}
-                      className="text-[11px] font-medium text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md"
+                      className="text-xs sm:text-sm font-bold text-violet-700 bg-violet-50 px-2.5 py-1 rounded-lg"
                     >
                       {stat}
                     </span>

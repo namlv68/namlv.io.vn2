@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { SectionHeading } from './SectionHeading';
+import { ArrowRight, Gift } from 'lucide-react';
+import { SectionHeading, Mark } from './SectionHeading';
 
 interface Props {
   onEnroll: () => void;
@@ -8,77 +8,84 @@ interface Props {
 
 const STEPS = [
   {
-    num: '01',
-    title: 'Tìm hiểu và hiểu nền tảng',
-    desc: 'Hiểu rõ thuật toán phân phối nội dung của TikTok, Reels, Shorts và tư duy xây kênh, chọn chủ đề/ngách nội dung hiệu quả.',
-    badge: 'Nền tảng'
+    num: '1',
+    title: 'Hiểu nền tảng',
+    result: 'Chọn đúng ngách, đúng chủ đề',
+    desc: 'Hiểu thuật toán phân phối của TikTok, Reels, Shorts và tư duy xây kênh.'
   },
   {
-    num: '02',
+    num: '2',
     title: 'Tạo video AI đầu tiên',
-    desc: 'Cài đặt công cụ, làm quen giao diện và tự tay xuất bản thước phim chuyển động AI đầu tay chỉ trong vài phút.',
-    badge: 'Thực hành ngay'
+    result: 'Có video đầu tay trong vài phút',
+    desc: 'Cài đặt công cụ, làm quen giao diện, tự tay xuất bản video chuyển động AI.'
   },
   {
-    num: '03',
-    title: 'Hook 3s đầu',
-    desc: 'Kỹ thuật tạo điểm nhấn hình ảnh & âm thanh 3 giây đầu để người xem không lướt qua, tối ưu chỉ số giữ chân (Retention).',
-    badge: 'Giữ chân khán giả'
+    num: '3',
+    title: 'Hook 3 giây đầu',
+    result: 'Người xem không lướt qua',
+    desc: 'Tạo điểm nhấn hình ảnh & âm thanh 3 giây đầu, tối ưu chỉ số giữ chân.'
   },
   {
-    num: '04',
-    title: 'Công thức viết Prompt video',
-    desc: 'Cấu trúc câu lệnh Prompt chuẩn xác tạo hình ảnh, chuyển động góc máy, nhân vật và kịch bản video AI không bị biến dạng.',
-    badge: 'Prompt'
+    num: '4',
+    title: 'Công thức viết Prompt',
+    result: 'Hình ảnh đẹp, không biến dạng',
+    desc: 'Cấu trúc câu lệnh chuẩn cho hình ảnh, góc máy, nhân vật và kịch bản.'
   },
   {
-    num: '05',
-    title: 'Sản xuất video hoàn chỉnh theo chủ đề mong muốn',
-    desc: 'Quy trình khép kín từ ý tưởng, kịch bản, âm thanh đến cắt ghép và xuất bản video hoàn chỉnh chất lượng cao theo đúng chủ đề bạn chọn.',
-    badge: 'Xuất bản'
+    num: '5',
+    title: 'Sản xuất video hoàn chỉnh',
+    result: 'Video chất lượng theo chủ đề bạn chọn',
+    desc: 'Quy trình khép kín: ý tưởng → kịch bản → âm thanh → dựng → xuất bản.'
   }
 ];
 
 export const Syllabus: React.FC<Props> = ({ onEnroll }) => {
   return (
-    <section className="mt-24">
+    <section className="mt-24 md:mt-32">
       <SectionHeading
-        align="left"
-        eyebrow="2 · Lộ trình"
-        title="Lộ trình làm video AI 5 bước"
-        description="Đi từ người mới bắt đầu đến tự tay sản xuất video AI cuốn hút theo chủ đề mong muốn."
+        step="2"
+        eyebrow="Lộ trình"
+        title={
+          <>
+            <Mark>5 bước</Mark> từ người mới đến video AI hoàn chỉnh
+          </>
+        }
       />
 
-      <ol className="bg-white border border-violet-100 rounded-2xl divide-y divide-violet-50">
+      <ol className="relative grid gap-4">
+        {/* đường nối dọc */}
+        <span className="absolute left-[27px] top-6 bottom-6 w-0.5 bg-violet-100 hidden sm:block" aria-hidden="true" />
         {STEPS.map((step) => (
-          <li key={step.num} className="flex items-start gap-4 p-5 sm:p-6">
-            <span className="shrink-0 w-10 h-10 rounded-xl bg-violet-50 text-violet-700 font-bold text-sm flex items-center justify-center">
+          <li
+            key={step.num}
+            className="relative bg-white border border-violet-100 rounded-2xl p-5 sm:p-6 sm:pl-16 flex flex-col sm:block gap-3"
+          >
+            <span className="sm:absolute sm:left-[13px] sm:top-6 w-10 h-10 sm:w-[30px] sm:h-[30px] rounded-full bg-violet-600 text-white font-bold text-base sm:text-sm flex items-center justify-center ring-4 ring-white">
               {step.num}
             </span>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                <h3 className="text-base font-semibold text-slate-900">{step.title}</h3>
-                <span className="text-[11px] font-medium text-violet-600 bg-violet-50 px-2 py-0.5 rounded-md">
-                  {step.badge}
-                </span>
-              </div>
-              <p className="mt-1.5 text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+            <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 md:gap-4">
+              <h3 className="text-lg md:text-xl font-bold text-slate-900">{step.title}</h3>
+              <span className="text-sm font-semibold text-emerald-600 md:text-right">✓ {step.result}</span>
             </div>
+            <p className="mt-1.5 text-sm md:text-base text-slate-500 leading-relaxed">{step.desc}</p>
           </li>
         ))}
       </ol>
 
-      <div className="mt-5 flex flex-col sm:flex-row items-center justify-between gap-4 bg-violet-50 border border-violet-100 rounded-2xl p-5">
-        <p className="text-sm text-slate-700 text-center sm:text-left">
-          Toàn bộ lộ trình được hướng dẫn thực hành chi tiết trong{' '}
-          <strong className="font-semibold text-slate-900">buổi Zoom chia sẻ AI miễn phí</strong>.
-        </p>
+      <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 bg-violet-600 text-white rounded-3xl p-6 md:p-8">
+        <div className="flex items-center gap-3 text-center md:text-left">
+          <Gift className="w-8 h-8 shrink-0 hidden md:block text-violet-200" />
+          <p className="text-base md:text-lg">
+            Toàn bộ lộ trình được hướng dẫn trực tiếp trong{' '}
+            <strong className="font-extrabold">buổi Zoom miễn phí</strong>.
+          </p>
+        </div>
         <button
           onClick={onEnroll}
-          className="shrink-0 w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors cursor-pointer"
+          className="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 bg-white text-violet-700 hover:bg-violet-50 font-bold text-base px-6 py-3.5 rounded-2xl transition-colors cursor-pointer"
         >
-          Đăng ký tham gia miễn phí
-          <ArrowRight className="w-4 h-4" />
+          Giữ chỗ miễn phí
+          <ArrowRight className="w-5 h-5" />
         </button>
       </div>
     </section>

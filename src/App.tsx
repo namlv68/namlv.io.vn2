@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
+import { Proof } from './components/Proof';
+import { ProfileBanner } from './components/ProfileBanner';
 import { PainPoints } from './components/PainPoints';
 import { Syllabus } from './components/Syllabus';
 import { RegistrationForm } from './components/RegistrationForm';
@@ -58,6 +60,8 @@ export default function App() {
         <Header onEnrollClick={scrollToRegistration} />
         <PainPoints />
         <Syllabus onEnroll={scrollToRegistration} />
+        <Proof />
+        <ProfileBanner />
         <RegistrationForm onSuccess={handleRegistrationSuccess} />
         <Testimonials />
         <FAQ />
